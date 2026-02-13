@@ -35,3 +35,6 @@ In dbConnection.js, import the mongoose library to connect to MongoDB and dbConn
 
 Generate API Key in cloudinary, store the variables (CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_SECRET, CLOUDINARY_API_KEY) va;ue in config.env
 Setup cloudinary with server.js (cloudinary.v2.config())
+
+models folder (Models → Database structure)
+messageSchema defines structure of Message documents
