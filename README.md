@@ -31,10 +31,15 @@ Connect frontend and backend creating middleware (app.use(cors({...}))) user's f
 adding other middlewares cookieParser(), express.json(), express.urlencoded(), fileUpload().
 
 
-In dbConnection.js, import the mongoose library to connect to MongoDB and dbConnection() in app.js.
+In dbConnection.js, import the mongoose library to Connect to MongoDB and dbConnection() in app.js.
 
 Generate API Key in cloudinary, store the variables (CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_SECRET, CLOUDINARY_API_KEY) va;ue in config.env
 Setup cloudinary with server.js (cloudinary.v2.config())
 
-models folder (Models → Database structure)
-messageSchema defines structure of Message documents
+controller/messageController.js
+to get the values from request body
+
+Define sendMessage functionality in messageController.js.
+Create the url for the functionality in messageRouter.js.
+Create middleware for messageRouter (app.use("api/v1/message",...))
+
