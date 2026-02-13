@@ -27,6 +27,7 @@ app.use(fileUpload({
     tempFileDir: "/tmp/",
 })); 
 
+app.use("/api/v1/message", (await import("./router/messageRouter.js")).messageRouter); //importing message router
 
 dbConnection();
 export default app;

@@ -43,3 +43,7 @@ Define sendMessage functionality in messageController.js.
 Create the url for the functionality in messageRouter.js.
 Create middleware for messageRouter (app.use("api/v1/message",...))
 
+
+Postman
+Healthcare-Web-Application-Development/Message/Send message : url http://localhost:4000/api/v1/message/send POST method
+raw, body (.json), content-type application/json
