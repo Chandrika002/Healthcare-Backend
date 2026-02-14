@@ -1,6 +1,7 @@
+import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
 import { Message } from "../models/messageSchema.js";
 
-export const sendMessage = async(req, res, next) => {
+export const sendMessage = catchAsyncErrors(async(req, res, next) => {
     const { firstName, lastName, email, phone, message } = req.body;  //defining variables
     if (!firstName || !lastName || !email || !phone || !message) {  
         return res.status(400).json({ //error handling without middleware
@@ -23,4 +24,4 @@ export const sendMessage = async(req, res, next) => {
     });
 
 
-}
+})

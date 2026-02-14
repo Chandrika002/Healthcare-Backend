@@ -47,3 +47,7 @@ Create middleware for messageRouter (app.use("api/v1/message",...))
 Postman
 Healthcare-Web-Application-Development/Message/Send message : url http://localhost:4000/api/v1/message/send POST method
 raw, body (.json), content-type application/json
+Send { "firstName": , "lastName": , "email": , "phone": , "message": }
+
+Create middlewares for handling errors and stop causing server down because of single error
+Create catchAsyncErrors and import in messageController
