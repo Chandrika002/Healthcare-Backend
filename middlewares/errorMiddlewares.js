@@ -28,10 +28,13 @@ export const errorMiddleware = (err, req, res, next) => {
         err = new Errorhandler(message, 400);
     }
 
+    // if the error is related to validation errors, we need to extract the error messages from the error object and join them into a single string
+    const errorMessage = err.errors ? Object.values(err.errors).map((value) => value.message).join(", ") : err.message;
+
     // show only the error message and status code in the response, not the stack trace
     return res.status(err.statusCode).json({
         success: false,
-        message: err.message,
+        message: errorMessage,
     });
 };
 

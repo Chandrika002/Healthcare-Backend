@@ -52,3 +52,7 @@ Send { "firstName": , "lastName": , "email": , "phone": , "message": }
 Create middlewares for handling errors  
 Create catchAsyncErrors and import in messageController
 Create errorMiddlewares to stop server being down for any single error and import it in messageController and app.js (use it after databaase connection).
+
+Modify errorMiddlewares to show only extracted the error messages from the error object and join them into a single string if it's related to validation error.
+
+
