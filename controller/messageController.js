@@ -1,13 +1,11 @@
 import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
 import { Message } from "../models/messageSchema.js";
+import Errorhandler from "../middlewares/errorMiddlewares.js";  
 
 export const sendMessage = catchAsyncErrors(async(req, res, next) => {
     const { firstName, lastName, email, phone, message } = req.body;  //defining variables
     if (!firstName || !lastName || !email || !phone || !message) {  
-        return res.status(400).json({ //error handling without middleware
-            success: false,
-            message: "Please fill in all fields",
-        });  
+        return next(new Errorhandler("Please fill all the fields", 400)); //if any field is missing
     }      
 
     await Message.create({ //creating message in database

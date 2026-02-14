@@ -49,5 +49,6 @@ Healthcare-Web-Application-Development/Message/Send message : url http://localho
 raw, body (.json), content-type application/json
 Send { "firstName": , "lastName": , "email": , "phone": , "message": }
 
-Create middlewares for handling errors and stop causing server down because of single error
+Create middlewares for handling errors  
 Create catchAsyncErrors and import in messageController
+Create errorMiddlewares to stop server being down for any single error and import it in messageController and app.js (use it after databaase connection).
