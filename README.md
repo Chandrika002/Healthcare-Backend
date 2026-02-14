@@ -46,6 +46,7 @@ Create middleware for messageRouter (app.use("api/v1/message",...))
 
 Postman
 Healthcare-Web-Application-Development/Message/Send message : url http://localhost:4000/api/v1/message/send POST method
+http://localhost:4000/messageRouter-path/sendMessage-path
 raw, body (.json), content-type application/json
 Send { "firstName": , "lastName": , "email": , "phone": , "message": }
 
@@ -62,3 +63,6 @@ Create userRouter -> defining path for functionality
 Import userRouter in app.js
 
 Create User in Postman and make request Patient register url(http://localhost:4000/api/v1/user/patient/register) Post method. Send message and check the registration in MongoDB.
+
+Define login function in userController, login path in userRouter (userRouter path in app.js)
+Postman -> server.js -> app.js -> userRouter.js -> userController.js -> userSchema.js (Database)
