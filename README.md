@@ -56,3 +56,7 @@ Create errorMiddlewares to stop server being down for any single error and impor
 Modify errorMiddlewares to show only extracted the error messages from the error object and join them into a single string if it's related to validation error.
 
 
+Create userSchema -> defining user fields
+Create userController -> handling the user registration
+Create userRouter -> defining path for functionality
+Import userRouter in app.js
