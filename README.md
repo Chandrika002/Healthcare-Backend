@@ -60,3 +60,5 @@ Create userSchema -> defining user fields
 Create userController -> handling the user registration
 Create userRouter -> defining path for functionality
 Import userRouter in app.js
+
+Create User in Postman and make request Patient register url(http://localhost:4000/api/v1/user/patient/register) Post method. Send message and check the registration in MongoDB.

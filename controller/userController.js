@@ -3,7 +3,7 @@ import Errorhandler from "../middlewares/errorMiddlewares.js";
 import { User } from "../models/userSchema.js";
 
 export const patientRegister = catchAsyncErrors(async (req, res, next) => {
-    const {firstName, lastName, email, phone, nid, dob, gender, password, role} = req.body;
+    const {firstName, lastName, email, phone, nid, dob, gender, password, confirmPassword, role} = req.body;
 
     if (
         !firstName ||
@@ -22,10 +22,11 @@ export const patientRegister = catchAsyncErrors(async (req, res, next) => {
     if (user) {
         return next(new Errorhandler("This user already exists.", 400));
     }
-    user = await User.create({ firstName, lastName, email, phone, nid, dob, gender, password, role });
+    user = await User.create({ firstName, lastName, email, phone, nid, dob, gender, password, confirmPassword, role });
     res.status(200).json({
         success: true,
         message: "User registered successfully.",
         user,
     });
+
 });
