@@ -66,3 +66,5 @@ Create User in Postman and make request Patient register url(http://localhost:40
 
 Define login function in userController, login path in userRouter (userRouter path in app.js)
 Postman -> server.js -> app.js -> userRouter.js -> userController.js -> userSchema.js (Database)
+
+Create jwtToken. Import it in userController and replace the response with generateToken(user, message, statusCode, response).
