@@ -48,5 +48,31 @@ export const login = catchAsyncErrors(async (req, res, next) => {
         return next(new Errorhandler("User with this role not found.", 400));
     }
     generateToken(user, "User logged in successfully.", 201, res);
-
 });
+
+export const addNewAdmin = catchAsyncErrors(async (req, res, next) => {
+    const {firstName, lastName, email, phone, nid, dob, gender, password, confirmPassword, role } = req.body;
+
+    if (
+        !firstName ||
+        !lastName ||
+        !email ||
+        !phone ||
+        !nid ||
+        !dob ||
+        !gender ||
+        !password||
+        !role
+    ) {
+        return next(new Errorhandler("Please fill all the fields.", 400));
+    }
+    const isRegistered = await User.findOne({ email });
+    if (isRegistered) {
+        return next(new Errorhandler("Admin with this email already exists.", 400));
+    }
+    const admin = await User.create({
+        firstName, lastName, email, phone, nid, dob, gender, password, confirmPassword, role: "Admin" 
+    })
+
+});   
+
