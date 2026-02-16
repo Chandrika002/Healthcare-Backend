@@ -70,3 +70,5 @@ Postman -> server.js -> app.js -> userRouter.js -> userController.js -> userSche
 Create jwtToken. Import it in userController and replace the response with generateToken(user, message, statusCode, response).
 
 Create addNewAdmin in userController, make the path in userRouter
+
+Create authentication, authorization to create new admin
