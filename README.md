@@ -71,4 +71,4 @@ Create jwtToken. Import it in userController and replace the response with gener
 
 Create addNewAdmin in userController, make the path in userRouter
 
-Create authentication, authorization to create new admin
+Create authentication, authorization in auth.js to create new admin by only an admin and path created in userRouter. 

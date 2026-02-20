@@ -51,7 +51,7 @@ export const login = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const addNewAdmin = catchAsyncErrors(async (req, res, next) => {
-    const {firstName, lastName, email, phone, nid, dob, gender, password, confirmPassword, role } = req.body;
+    const {firstName, lastName, email, phone, nid, dob, gender, password, confirmPassword} = req.body;
 
     if (
         !firstName ||
@@ -61,8 +61,7 @@ export const addNewAdmin = catchAsyncErrors(async (req, res, next) => {
         !nid ||
         !dob ||
         !gender ||
-        !password||
-        !role
+        !password
     ) {
         return next(new Errorhandler("Please fill all the fields.", 400));
     }
@@ -71,8 +70,12 @@ export const addNewAdmin = catchAsyncErrors(async (req, res, next) => {
         return next(new Errorhandler(`${isRegistered.role} with this email already exists.`, 400));
     }
     const admin = await User.create({
-        firstName, lastName, email, phone, nid, dob, gender, password, confirmPassword, role: "Admin" 
-    })
-
+        firstName, lastName, email, phone, nid, dob, gender, password, confirmPassword, role: "Admin", 
+    });
+    res.status(200).json({
+        success: true,
+        message: "New Admin registered successfully!",
+        admin,
+    });
 });   
 

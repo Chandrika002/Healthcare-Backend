@@ -94,7 +94,7 @@ userSchema.methods.generateJsonWebToken = function(){ // token generate for user
     return jwt.sign({id: this._id}, process.env.JWT_SCERET_KEY, {
         expiresIn: process.env.JWT_EXPIRES,
     });
-}
+};
 
 
 // Create User model
