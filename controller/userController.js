@@ -2,6 +2,8 @@ import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
 import Errorhandler from "../middlewares/errorMiddlewares.js";
 import { User } from "../models/userSchema.js";
 import { generateToken } from "../utils/jwtToken.js"; "../utils/jwtToken.js";
+
+
 export const patientRegister = catchAsyncErrors(async (req, res, next) => {
     const {firstName, lastName, email, phone, nid, dob, gender, password, confirmPassword, role} = req.body;
 
@@ -79,3 +81,10 @@ export const addNewAdmin = catchAsyncErrors(async (req, res, next) => {
     });
 });   
 
+export const getAllDoctors = catchAsyncErrors(async(req, res, next)=>{
+    const doctors = await User.find({ role: "Doctor" });
+    res.status(200).json({
+        success: true,
+        doctors,
+    });
+});
