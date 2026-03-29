@@ -80,4 +80,3 @@ export const addNewAdmin = catchAsyncErrors(async (req, res, next) => {
         admin,
     });
 });   
-
