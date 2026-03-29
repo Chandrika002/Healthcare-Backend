@@ -74,6 +74,19 @@ Create addNewAdmin in userController, make the path in userRouter
 Create authentication, authorization in auth.js to create new admin by only an admin and path created in userRouter. 
 
 
+getAllDoctors in userController, in userRouter.js router.get("/doctors", getAllDoctors);
+
+exported in userController.js
+in userRouter.js router.get("/patient/me", isPatientAuthenticated, getUserDetails);
+router.get("/admin/logout", isAdminAuthenticated, logoutAdmin);
+patient logout also created in same way 
+
+
+in userController ; export const addNewDoctor 
+router.post "/doctor/addnew"
+docavatar
+cloudinary upload docAvatar
+
 
 ////
 changes:1
