@@ -72,3 +72,19 @@ Create jwtToken. Import it in userController and replace the response with gener
 Create addNewAdmin in userController, make the path in userRouter
 
 Create authentication, authorization in auth.js to create new admin by only an admin and path created in userRouter. 
+
+
+
+////
+changes:1
+$ npm init  -->  package.json
+$ npm i bcrypt cloudinary cookie-parser cors dotenv express mongoose express-fileupload jsonwebtoken validator  -->  node_modules (folder), package-lock.json
+
+##updated files: 
+controller/userController.js
+router/userRouter.js
+package.json & package-lock.json
+
+##get request for doctors: /api/v1/user/doctors
+## get user details: http://localhost:4000/api/v1/user/admin/me
+## get patient details: http://localhost:4000/api/v1/user/patient/me
