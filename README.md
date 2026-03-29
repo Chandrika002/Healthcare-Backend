@@ -86,3 +86,5 @@ router/userRouter.js
 package.json & package-lock.json
 
 ##get request for doctors: /api/v1/user/doctors
+## get user details: http://localhost:4000/api/v1/user/admin/me
+## get patient details: http://localhost:4000/api/v1/user/patient/me
