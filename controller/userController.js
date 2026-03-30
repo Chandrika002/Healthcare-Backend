@@ -2,7 +2,7 @@ import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
 import Errorhandler from "../middlewares/errorMiddlewares.js";
 import { User } from "../models/userSchema.js";
 import { generateToken } from "../utils/jwtToken.js"; "../utils/jwtToken.js";
-
+import cloudinary from "cloudinary";
 
 export const patientRegister = catchAsyncErrors(async (req, res, next) => {
     const {firstName, lastName, email, phone, nid, dob, gender, password, confirmPassword, role} = req.body;
@@ -80,3 +80,80 @@ export const addNewAdmin = catchAsyncErrors(async (req, res, next) => {
         admin,
     });
 });   
+
+export const getAllDoctors = catchAsyncErrors(async (req, res, next) => {
+    const doctors = await User.find({ role: "Doctor" });
+    res.status(200).json({
+        success: true,
+        doctors,
+    });
+});
+
+export const getUserDetails = catchAsyncErrors(async (req, res, next) => {
+    const user = req.user;
+    if(!user){
+        return next(new Errorhandler("User not found.", 404));
+    }
+    res.status(200).json({
+        success: true,
+        user,
+    });
+});
+
+export const logoutAdmin = catchAsyncErrors(async (req, res, next) => {
+    res.status(200).cookie("adminToken", null, {
+        expires: new Date(Date.now()),
+        httpOnly: true,
+    }).json({
+        success: true,
+        message: "Admin logged out successfully.",
+    });
+});
+
+export const logoutPatient = catchAsyncErrors(async (req, res, next) => {   
+    res.status(200).cookie("patientToken", null, {
+        expires: new Date(Date.now()),
+        httpOnly: true,
+    }).json({
+        success: true,
+        message: "Patient logged out successfully.",
+    });
+});
+
+export const addNewDoctor = catchAsyncErrors(async (req, res, next) => { 
+    if(!req.files || Object.keys(req.files).length === 0){
+        return next(new Errorhandler("Doctor Avatar Required.", 400));  
+    }
+    const { docAvatar } = req.files;   
+    const allowedFormates = ["image/jpeg", "image/png", "image/jpg", "image/webp"];
+    if(!allowedFormates.includes(docAvatar.mimetype)){
+        return next(new Errorhandler("Only .jpg, .jpeg, .png and .webp formats are supported.", 400));    
+    }
+    const { firstName, lastName, email, phone, nid, dob, gender, password, confirmPassword, doctorDepartment } = req.body;    
+
+    if ( !firstName || !lastName || !email || !phone || !nid || !dob || !gender || !password || !confirmPassword || !doctorDepartment ) { 
+        return next(new Errorhandler("Please fill all the fields.", 400));    
+    }
+    const isRegistered = await User.findOne({ email });
+    if (isRegistered) {
+        return next(new Errorhandler(`${isRegistered.role} with this email already exists.`, 400));    
+    }   
+
+    
+
+    const cloudinaryResponse = await cloudinary.uploader.upload(docAvatar.tempFilePath);
+    if(!cloudinaryResponse || cloudinaryResponse.error){
+        console.error("Cloudinary Error:", cloudinaryResponse.error || "Unknown Cloudinary Error.");    
+    }
+
+    const doctor = await User.create({ firstName, lastName, email, phone, nid, dob, gender, password, confirmPassword, doctorDepartment, role: "Doctor", docAvatar: { public_id: cloudinaryResponse.public_id, url: cloudinaryResponse.secure_url }, });
+
+    res.status(200).json({
+        success: true,
+        message: "New Doctor registered successfully!",
+        doctor,
+    });
+});
+
+
+
