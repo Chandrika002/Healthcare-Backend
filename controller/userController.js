@@ -154,3 +154,6 @@ export const addNewDoctor = catchAsyncErrors(async (req, res, next) => {
         doctor,
     });
 });
+
+
+
